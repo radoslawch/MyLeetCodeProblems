@@ -26,7 +26,7 @@ def preorder_traversal_rec(root)
 end
 
 def preorder_traversal_helper(root, out)
-  if root && root.val
+  if root&.val
     out.push(root.val)
     preorder_traversal_helper(root.left, out) if root.left
     preorder_traversal_helper(root.right, out) if root.right
@@ -39,7 +39,7 @@ def preorder_traversal_ite(root)
   all = []
   # output array
   out = []
-  if root && root.val
+  if root&.val
     proceeding = true
 
     # firstly take root value
@@ -52,7 +52,7 @@ def preorder_traversal_ite(root)
       all.push(root.left) if root.left
 
       # finish proceeding when no nodes left
-      proceeding = false if all.length == 0
+      proceeding = false if all.length.zero?
 
       # take most recent left/right value
       root = all.pop

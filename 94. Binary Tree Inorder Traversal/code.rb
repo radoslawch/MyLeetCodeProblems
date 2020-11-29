@@ -26,7 +26,7 @@ def inorder_traversall_rec(root)
 end
 
 def inorder_traversal_helper(root, out)
-  if root && root.val
+  if root&.val
     inorder_traversal_helper(root.left, out) if root.left
     out.push(root.val)
     inorder_traversal_helper(root.right, out) if root.right
@@ -42,7 +42,7 @@ def inorder_traversall_ite(root)
   # output array
   out = []
 
-  if root && root.val
+  if root&.val
     proceeding = true
     while proceeding
 
@@ -63,7 +63,7 @@ def inorder_traversall_ite(root)
         next
       # if left children is not present
       # move last root value to output array
-      elsif val.length > 0
+      elsif val.length.positive?
         out.push(val.pop)
       end
 
@@ -78,11 +78,11 @@ def inorder_traversall_ite(root)
       # if no children were present
       # and root value array is empty
       # stop traversing
-      proceeding = false if all.length == 0 && val.length == 0
+      proceeding = false if all.length.zero? && val.length.zero?
 
       # if there is remembered node
       # traverse it next
-      root = all.pop if all.length > 0
+      root = all.pop if all.length.positive?
     end
   end
   out

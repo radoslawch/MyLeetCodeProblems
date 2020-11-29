@@ -25,12 +25,8 @@ end
 
 def inorder_traversal_helper(root, out)
   if root && root.val
-    if root.left
-      inorder_traversal_helper(root.left, out)
-    end
-    if root.right
-      inorder_traversal_helper(root.right, out)
-    end
+    inorder_traversal_helper(root.left, out) if root.left
+    inorder_traversal_helper(root.right, out) if root.right
     out.push(root.val)
   end
   out
@@ -78,22 +74,16 @@ def postorder_traversal_ite(root)
 
       # if no children present
       # move last root value to output array
-      if val.length > 0
-        out.push(val.pop)
-      end
+      out.push(val.pop) if val.length > 0
 
       # if no children were present
       # and root value array is empty
       # stop traversing
-      if (all.length == 0 && val.length == 0)
-        proceeding = false
-      end
+      proceeding = false if all.length == 0 && val.length == 0
 
       # if there is remembered node
       # traverse it next
-      if all.length > 0
-        root = all.pop
-      end
+      root = all.pop if all.length > 0
     end
   end
   out

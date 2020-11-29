@@ -26,12 +26,8 @@ end
 def preorder_traversal_helper(root, out)
   if root && root.val
     out.push(root.val)
-    if root.left
-      preorder_traversal_helper(root.left, out)
-    end
-    if root.right
-      preorder_traversal_helper(root.right, out)
-    end
+    preorder_traversal_helper(root.left, out) if root.left
+    preorder_traversal_helper(root.right, out) if root.right
   end
   out
 end
@@ -54,9 +50,7 @@ def preorder_traversal_ite(root)
       all.push(root.left) if root.left
 
       # finish proceeding when no nodes left
-      if all.length == 0
-        proceeding = false
-      end
+      proceeding = false if all.length == 0
 
       # take most recent left/right value
       root = all.pop

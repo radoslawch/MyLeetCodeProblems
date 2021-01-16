@@ -10,9 +10,7 @@
 # @param {TreeNode} root
 # @return {Integer[][]}
 def level_order(root)
-  out ||= []
-  level = 0
-  out = level_order_helper(root, out, level)  
+  level_order_helper(root, [], 0)
 end
 
 def level_order_helper(root, out, level)
